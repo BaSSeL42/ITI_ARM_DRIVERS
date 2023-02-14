@@ -11,6 +11,11 @@
 #define SEG_SIZE		10
 #define PIN_NUMBER		7
 
+#define LED_PIN_1		MGPIO_PINC13
+#define LED_PIN_2		MGPIO_PINC14
+#define LED_PIN_3		MGPIO_PINC15
+
+
 typedef struct
 {
 	enu_pin_t enPinType;

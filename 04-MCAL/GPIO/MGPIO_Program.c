@@ -37,6 +37,20 @@ volatile u32* GPIO_OTYPER[3] 	= { GPIOA_OTYPER, GPIOB_OTYPER, GPIOC_OTYPER };
 /********************************************************************************************************************
  *  										Function Implementation
 *******************************************************************************************************************/
+//void MGPIO_voidSetPinMode(u8 Copy_u8PortNum,u8 Copy_u8PinNum ,u8 Copy_u8PinMode)
+//{
+//	switch (Copy_u8PortNum)
+//	{
+//		case MGPIO_PORTA : MGPIOA->MODER &= ~(u32)(BITS_MODE_MASK << Copy_u8PinNum*2U); MGPIOA->MODER |= (u32)(Copy_u8PinMode << Copy_u8PinNum*2U); break;
+//		case MGPIO_PORTB : MGPIOB->MODER &= ~(u32)(BITS_MODE_MASK << Copy_u8PinNum*2U); MGPIOB->MODER |= (u32)(Copy_u8PinMode << Copy_u8PinNum*2U); break;
+//		case MGPIO_PORTC : MGPIOC->MODER &= ~(u32)(BITS_MODE_MASK << Copy_u8PinNum*2U); MGPIOC->MODER |= (u32)(Copy_u8PinMode << Copy_u8PinNum*2U); break;
+//		default : /* Error */  break;
+//	}
+//	return;
+//}
+
+
+
 void MGPIO_voidSetPinMode(enu_pin_t Copy_enPinNum, enu_pinMode_t Copy_enPinMode)
 {
 	u8 local_u8PortNum;
@@ -77,6 +91,7 @@ void MGPIO_voidSetPinData(enu_pin_t Copy_enPinNum, u8 Copy_PinValue)
 		{
 			case MGPIO_PIN_LOW	: CLR_BIT(*GPIO_ODR[local_u8PortNum], local_u16PinNum);	 break;
 			case MGPIO_PIN_HIGH	: SET_BIT(*GPIO_ODR[local_u8PortNum], local_u16PinNum);	 break;
+			case MGPIO_PIN_TOG	: TOG_BIT(*GPIO_ODR[local_u8PortNum], local_u16PinNum);  break;
 			default: break;
 		}
 	}else
